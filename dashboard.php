@@ -1,32 +1,26 @@
 <?php
 
-session_start();
+session_start([
+    'cookie_lifetime' => 86400,
+]);
 // mysql connection 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, 'rmsdb');
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-// echo "Connected successfully";
-
+include 'includes/connect_db.php';
 
 // match username and password
 
 $user_name = $_POST['username'];
 
-$sql = "SELECT customer_password from customer WHERE customer_name='$user_name'";
+
+
+
+$sql = "SELECT * from customer WHERE customer_name='$user_name'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     $row = $result->fetch_assoc();
+
     if ( $row['customer_password'] == $_POST['password']) {
         echo "Welcome ".$_POST['username']."!";
 
@@ -37,7 +31,7 @@ if ($result->num_rows > 0) {
         $result_menu = $conn->query($sql_menu);
 
         ?> 
-        <form action=payment.php method='POST'>
+        <form action=order_confirmation.php method='POST'>
             <p> select one menu from below</p>
             <?php
                 if($result_menu->num_rows > 0) {
