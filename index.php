@@ -6,7 +6,7 @@ $str1 = "Welcome Resturant Management system. <br>";
 $str2 = "Welcome to our Application <br>"; 
 $str3 = "Welcome please login before you order. <br>;";
 
-echo $str2;
+echo $str1;
 
 ?>
 

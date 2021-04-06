@@ -7,7 +7,7 @@ $username = "root";
 $password = "";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, 'simpleappdb');
+$conn = new mysqli($servername, $username, $password, 'rmsdb');
 
 // Check connection
 if ($conn->connect_error) {
@@ -20,37 +20,39 @@ if ($conn->connect_error) {
 
 $user_name = $_POST['username'];
 
-$sql = "SELECT password from user WHERE username='$user_name'";
+$sql = "SELECT customer_password from customer WHERE customer_name='$user_name'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     $row = $result->fetch_assoc();
-    if ( $row['password'] == $_POST['password']) {
+    if ( $row['customer_password'] == $_POST['password']) {
         echo "Welcome ".$_POST['username']."!";
-
         ?>
-        <form action="calculation.php" method="POST">
+            <form action="payment.php" method='POST'>
+            <form>
+            <p> select one menu from below,</p>
+  <input type="radio" id="menu1" name="menu" value="menu1">
+  <label for="menu1">rice fish soup drinks</label><br>
+  <input type="radio" id="menu2" name="menu" value="menu2">
+  <label for="menu2">rice mutton soup drinks</label><br>
+  <input type="radio" id="menu3" name="menu" value="menu3">
+  <label for="menu3">rice chicken soup drinks</label><br>
+  <input type="radio" id="menu4" name="menu" value="menu4">
+  <label for="menu4">rice beef soup drinks</label>
+ <p>
+  how many number of  menu you went to order </p>
+  <label for="quantity">Quantity (between 1 and 5):</label>
+  <input type="number" id="quantity" name="quantity" min="1" max="5">
+  <input type="submit">
+</form>
 
-            <br>
-            <input type="checkbox" id="soup" name="soup" value="soup" /> <label for="soup">Soup</label><br>
-            <input type="checkbox" id="onthon" name="onthon" value="onthon" /> <label for="onthon">Onthon</label> <br> 
-            <input type="checkbox" id="pakura" name="pakura" value="pakura" /> <label for="soup">Pakura</label> <br> 
-            <br>
-            <input type="checkbox" id="rice" name="rice" value="rice" /> <label for="Rice">Rice</label><br>
-            <input type="checkbox" id="nan" name="nan" value="nan" /> <label for="nan">nan</label><br>
-            <input type="checkbox" id="nodols" name="nodols" value="nodols" /> <label for="nodols">nodols</label><br>
-            <br>
-            <input type="checkbox" id="beef" name="beef" value="beef" /> <label for="beef">beef</label><br>
-            <input type="checkbox" id="chicken" name="chicken" value="chicken" /> <label for="chicken">chicken</label><br>
-            <input type="checkbox" id="mutton" name="mutton" value="mutton" /> <label for="mutton">mutton</label><br>
-            <br>
-            <input type="checkbox" id="yogart" name="yogart" value="yogart" /> <label for="yogart">yogart</label><br>
-            <input type="checkbox" id="sweet" name="sweet" value="sweet" /> <label for="sweet">Sweet</label><br>
-            <input type="checkbox" id="drinks" name="drinks" value="drinks" /> <label for="drinks">drinks</label><br>
-            <input type="Submit" value="Submit"/> 
-        </form>
-        <?php
+
+            </form>
+
+
+
+       <?php
 
     }
     else {
