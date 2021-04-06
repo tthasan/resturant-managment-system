@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 // mysql connection 
 
 $servername = "localhost";
@@ -28,38 +29,38 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     if ( $row['customer_password'] == $_POST['password']) {
         echo "Welcome ".$_POST['username']."!";
-        ?>
-            <form action="payment.php" method='POST'>
-            <form>
-            <p> select one menu from below,</p>
-  <input type="radio" id="menu1" name="menu" value="menu1">
-  <label for="menu1">rice fish soup drinks</label><br>
-  <input type="radio" id="menu2" name="menu" value="menu2">
-  <label for="menu2">rice mutton soup drinks</label><br>
-  <input type="radio" id="menu3" name="menu" value="menu3">
-  <label for="menu3">rice chicken soup drinks</label><br>
-  <input type="radio" id="menu4" name="menu" value="menu4">
-  <label for="menu4">rice beef soup drinks</label>
- <p>
-  how many number of  menu you went to order </p>
-  <label for="quantity">Quantity (between 1 and 5):</label>
-  <input type="number" id="quantity" name="quantity" min="1" max="5">
-  <input type="submit">
-</form>
 
+        $_SESSION['username'] = $_POST['username'];
+        $_SESSION['customer_id'] = $row['customer_id'];
 
-            </form>
+        $sql_menu = "SELECT * from menu";
+        $result_menu = $conn->query($sql_menu);
 
+        ?> 
+        <form action=payment.php method='POST'>
+            <p> select one menu from below</p>
+            <?php
+                if($result_menu->num_rows > 0) {
+                    while($row_menu = $result_menu->fetch_assoc()) {
+                        echo '<input type="radio" id="'.$row_menu['menu_id'].'" name="menu" value="'.$row_menu['menu_id'].'">';
+                        echo '<label for="'.$row_menu['menu_id'].'">'.$row_menu['menu_description'].' - '.$row_menu['menu_price'].' Taka</label><br>';
+                    }
+                }
+            ?>
 
+            <p> how many number of  menu you went to order </p>
+            <label for="quantity">Quantity (between 1 and 5):</label>
+            <input type="number" id="quantity" name="quantity" min="1" max="5">
+            <input type="submit" value="Confirm Order">
+        </form> 
 
-       <?php
-
+<?php
     }
     else {
         echo "You have put a wrong password, please <a href='index.html'>try again</a>.";
     }
   
-    } 
+} 
 else {
     echo "0 results";
 }
