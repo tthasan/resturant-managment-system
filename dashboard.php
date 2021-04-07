@@ -7,6 +7,8 @@ session_start([
 
 include 'includes/connect_db.php';
 
+include 'includes/header.php';
+
 // match username and password
 
 $user_name = $_POST['username'];
@@ -59,5 +61,6 @@ else {
     echo "0 results";
 }
 $conn->close();
-    
+
+include 'includes/footer.php';
 ?>

@@ -1,19 +1,33 @@
-<?php
+<?php include 'includes/header.php' ?>
 
-
-
-$str1 = "Welcome Resturant Management system. <br>"; 
-$str2 = "Welcome to our Application <br>"; 
-$str3 = "Welcome please login before you order. <br>;";
-
-echo $str1;
-
-?>
-
-<form action="dashboard.php" method="post">
-	<div class="container">
-	  <input type="text" placeholder="Enter Username" name="username" required>
-	  <input type="password" placeholder="Enter Password" name="password" required>
-	  <button type="submit">Login</button>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<p class="text-center">Welcome to our resturant management system</p>
+    	</div>
 	</div>
-</form>
+
+  <div class="row">
+    <div class="col-sm"> </div>
+    <div class="col-sm">
+		<form action="dashboard.php" method="post">
+			<div class="mb-3">
+				<input type="text" class="form-control" placeholder="Enter Username" name="username" required>
+			</div>
+		
+			<div class="mb-3">
+				<input type="password" class="form-control" placeholder="Enter Password" name="password" required>
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Login</button>
+	</form>
+    </div>
+    <div class="col-sm"> </div>
+  </div>
+</div>
+
+
+<?php include 'includes/footer.php' ?>
+
+
+
