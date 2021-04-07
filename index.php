@@ -2,6 +2,12 @@
 
 <div class="container">
 	<div class="row">
+        <div class="col">
+            <nav class="navbar navbar-dark bg-dark"></nav>
+        </div>
+    </div>
+
+	<div class="row">
 		<div class="col">
 			<p class="text-center">Welcome to our resturant management system</p>
     	</div>

@@ -6,15 +6,11 @@ session_start([
 // mysql connection 
 
 include 'includes/connect_db.php';
-
 include 'includes/header.php';
 
 // match username and password
 
 $user_name = $_POST['username'];
-
-
-
 
 $sql = "SELECT * from customer WHERE customer_name='$user_name'";
 $result = $conn->query($sql);
@@ -24,7 +20,6 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
 
     if ( $row['customer_password'] == $_POST['password']) {
-        echo "Welcome ".$_POST['username']."!";
 
         $_SESSION['username'] = $_POST['username'];
         $_SESSION['customer_id'] = $row['customer_id'];
@@ -32,23 +27,43 @@ if ($result->num_rows > 0) {
         $sql_menu = "SELECT * from menu";
         $result_menu = $conn->query($sql_menu);
 
-        ?> 
-        <form action=order_confirmation.php method='POST'>
-            <p> select one menu from below</p>
-            <?php
-                if($result_menu->num_rows > 0) {
-                    while($row_menu = $result_menu->fetch_assoc()) {
-                        echo '<input type="radio" id="'.$row_menu['menu_id'].'" name="menu" value="'.$row_menu['menu_id'].'">';
-                        echo '<label for="'.$row_menu['menu_id'].'">'.$row_menu['menu_description'].' - '.$row_menu['menu_price'].' Taka</label><br>';
-                    }
-                }
-            ?>
+?> 
 
-            <p> how many number of  menu you went to order </p>
-            <label for="quantity">Quantity (between 1 and 5):</label>
-            <input type="number" id="quantity" name="quantity" min="1" max="5">
-            <input type="submit" value="Confirm Order">
-        </form> 
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav class="navbar navbar-dark bg-dark"></nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm"> </div>
+        <div class="col-sm"> 
+            <p> Welcome, <strong> <?php echo $_POST['username'] ?> </strong> ! </p>
+            <form action=order_confirmation.php method='POST'>
+                <p class="text-danger"> select one menu from below</p>
+                <?php
+                    if($result_menu->num_rows > 0) {
+                        while($row_menu = $result_menu->fetch_assoc()) { 
+                        ?>  
+                            <div class="form-check"> 
+                                <?php  echo '<input type="radio" class="form-check-input" id="'.$row_menu['menu_id'].'" name="menu" value="'.$row_menu['menu_id'].'">';
+                                echo '<label class="form-check-label" for="'.$row_menu['menu_id'].'">'.$row_menu['menu_description'].' - '.$row_menu['menu_price'].' Taka</label><br>'; ?>
+                            </div> 
+                        <?php
+                        }
+                    }
+                ?>
+                <br> 
+                <p> how many number of  menu you went to order </p>
+                <!-- <label for="quantity">Quantity (between 1 and 5):</label> -->
+                <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="5">
+                <br> 
+                <input type="submit" class="btn btn-primary" value="Confirm Order"/>
+            </form> 
+        </div>
+        <div class="col-sm"> </div>
+    </div>
+</div>
 
 <?php
     }
