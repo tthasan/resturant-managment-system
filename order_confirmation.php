@@ -15,13 +15,27 @@ if ($result_menu->num_rows > 0) {
     include 'includes/header.php';
     echo "You have ordered ".$row_menu['menu_description']." x ".$_POST['quantity']." times.<br>";
     echo "Your total price is ".$total_price."<br>";
-
 ?>
+
+
 <div class="container">
     <div class="row">
         <div class="col-sm"></div>
         <div class="col-sm">
             <p></p>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th><th>Item</th><th>Quantity</th><th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td><td> <?php echo $row_menu['menu_description']; ?> </td>
+                    </tr>
+                </tbody>
+            </table>
             <form action="payment_confirmation.php" method="post">
                 <input type="hidden" value="" name="">
                 <?php echo "<input type='hidden' name='menu_id' value='".$_POST['menu']."'>"; ?>
