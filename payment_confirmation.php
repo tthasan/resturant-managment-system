@@ -21,4 +21,23 @@ if ($result_id->num_rows > 0) {
 
 }
 
-echo "Your order and payment is confirmed, please go to <a href='dashboard.php'>Dashboard</a>.";
+include 'includes/header.php'
+
+?>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <nav class="navbar navbar-dark bg-dark"></nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm"> <p class="text-success">Your payment is confirmed. Please go to <a href='dashboard.php'>Dashboard</a></p></div>
+        <div class="col-sm"></div>
+    </div>
+</div>
+
+
+
+<?php include 'includes/footer.php'; ?>
