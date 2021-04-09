@@ -26,7 +26,7 @@ if ( !isset($_SESSION['username']) ) {
             $_SESSION['customer_id'] = $row['customer_id'];
 
         } else {
-            echo "You have put a wrong password, please <a href='index.html'>try again</a>.";
+            echo "You have put a wrong password, please <a href='index.php'>try again</a>.";
             session_unset();
         }
     }
