@@ -26,7 +26,24 @@ if ( !isset($_SESSION['username']) ) {
             $_SESSION['customer_id'] = $row['customer_id'];
 
         } else {
+?>
             echo "You have put a wrong password, please <a href='index.php'>try again</a>.";
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <nav class="navbar navbar-dark bg-dark"></nav>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <p>You have put a wrong password, please <a href='index.php'>try again</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+<?php
             session_unset();
         }
     }
@@ -40,12 +57,7 @@ if (isset($_SESSION['username'])) {
         include 'includes/header.php';
 ?> 
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <nav class="navbar navbar-dark bg-dark"></nav>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col-sm"> </div>
         <div class="col-sm"> 
