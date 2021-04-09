@@ -25,11 +25,10 @@ if ( !isset($_SESSION['username']) ) {
             $_SESSION['username'] = $_POST['username'];
             $_SESSION['customer_id'] = $row['customer_id'];
 
+        } else {
+            echo "You have put a wrong password, please <a href='index.html'>try again</a>.";
+            session_unset();
         }
-    }
-    else {
-        echo "You have put a wrong password, please <a href='index.html'>try again</a>.";
-        session_unset();
     }
 }
 
