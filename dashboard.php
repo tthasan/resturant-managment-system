@@ -10,23 +10,36 @@ include 'includes/header.php';
 
 // match username and password
 
+
 $user_name = $_POST['username'];
 
-$sql = "SELECT * from customer WHERE customer_name='$user_name'";
-$result = $conn->query($sql);
+if ( !isset($_SESSION['username']) ) {
+    $sql = "SELECT * from customer WHERE customer_name='$user_name'";
+    $result = $conn->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    $row = $result->fetch_assoc();
+    if ($result->num_rows > 0) {
+        // output data of each row
+        $row = $result->fetch_assoc();
 
-    if ( $row['customer_password'] == $_POST['password']) {
+        if ($row['customer_password'] == $_POST['password']) {
 
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['customer_id'] = $row['customer_id'];
+            $_SESSION['username'] = $_POST['username'];
+            $_SESSION['customer_id'] = $row['customer_id'];
+
+        }
+    }
+    else {
+        echo "You have put a wrong password, please <a href='index.html'>try again</a>.";
+        session_unset();
+    }
+}
+
+if (isset($_SESSION['username'])) {
 
         $sql_menu = "SELECT * from menu";
         $result_menu = $conn->query($sql_menu);
 
+        include 'includes/header.php';
 ?> 
 
 <div class="container">
@@ -66,16 +79,12 @@ if ($result->num_rows > 0) {
 </div>
 
 <?php
-    }
-    else {
-        echo "You have put a wrong password, please <a href='index.html'>try again</a>.";
-    }
-  
-} 
+    include 'includes/footer.php';
+}
 else {
     echo "0 results";
 }
 $conn->close();
 
-include 'includes/footer.php';
+
 ?>
