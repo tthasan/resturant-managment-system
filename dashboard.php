@@ -68,7 +68,8 @@ if (isset($_SESSION['username'])) {
                 <p> How many number of menu you went to order : </p>
                 <!-- <label for="quantity">Quantity (between 1 and 5):</label> -->
                 <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="5">
-                <br> 
+                <br>
+                <a href="index.php">Back</a>
                 <input type="submit" class="btn btn-primary" value="Confirm Order"/>
             </form> 
         </div>
