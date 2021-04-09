@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
         <div class="col-sm"> 
             <p> Welcome, <strong> <?php echo $_POST['username'] ?> </strong> ! </p>
             <form action=order_confirmation.php method='POST'>
-                <p class="text-danger"> select one menu from below</p>
+                <p class="text-danger"> Select one menu from below :</p>
                 <?php
                     if($result_menu->num_rows > 0) {
                         while($row_menu = $result_menu->fetch_assoc()) { 
@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
                     }
                 ?>
                 <br> 
-                <p> how many number of  menu you went to order </p>
+                <p> How many number of menu you went to order : </p>
                 <!-- <label for="quantity">Quantity (between 1 and 5):</label> -->
                 <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="5">
                 <br> 

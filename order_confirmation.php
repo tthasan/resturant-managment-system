@@ -54,7 +54,7 @@ if ($result_menu->num_rows > 0) {
                 <?php echo "<input type='hidden' name='menu_id' value='".$_POST['menu']."'>"; ?>
                 <?php echo "<input type='hidden' name='menu_quantity' value='".$_POST['quantity']."'>"; ?>
                 <?php echo "<input type='hidden' name='total_price' value='".$total_price."'>"; ?>
-                <input class="form-control btn btn-primary"" type="submit" value="confirm">
+                <input class="form-control btn btn-primary"" type="submit" value="Confirm">
             </form>
         </div>
         <div class="col-4"></div>

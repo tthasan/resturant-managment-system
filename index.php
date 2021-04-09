@@ -9,7 +9,7 @@
 
 	<div class="row">
 		<div class="col">
-			<p class="text-center">Welcome to our resturant management system</p>
+			<p class="text-center">Welcome To Our Resturant Management System</p>
     	</div>
 	</div>
 
