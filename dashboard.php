@@ -11,9 +11,8 @@ include 'includes/header.php';
 // match username and password
 
 
-$user_name = $_POST['username'];
-
 if ( !isset($_SESSION['username']) ) {
+    $user_name = $_POST['username'];
     $sql = "SELECT * from customer WHERE customer_name='$user_name'";
     $result = $conn->query($sql);
 
@@ -51,7 +50,7 @@ if (isset($_SESSION['username'])) {
     <div class="row">
         <div class="col-sm"> </div>
         <div class="col-sm"> 
-            <p> Welcome, <strong> <?php echo $_POST['username'] ?> </strong> ! </p>
+            <p> Welcome, <strong> <?php echo $_SESSION['username'] ?> </strong> ! </p>
             <form action=order_confirmation.php method='POST'>
                 <p class="text-danger"> Select one menu from below :</p>
                 <?php
