@@ -11,7 +11,7 @@ include 'includes/header.php';
 // match username and password
 
 
-if ( !isset($_SESSION['username']) ) {
+if ( isset($_POST['username']) ) {
     $user_name = $_POST['username'];
     $sql = "SELECT * from customer WHERE customer_name='$user_name'";
     $result = $conn->query($sql);
@@ -27,19 +27,18 @@ if ( !isset($_SESSION['username']) ) {
 
         } else {
 ?>
-            echo "You have put a wrong password, please <a href='index.php'>try again</a>.";
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <nav class="navbar navbar-dark bg-dark"></nav>
                     </div>
                 </div>
-            </div>
-            <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm"> </div>
+                    <div class="col-sm">
                         <p>You have put a wrong password, please <a href='index.php'>try again</a>.</p>
                     </div>
+                    <div class="col-sm"> </div>
                 </div>
             </div>
 
@@ -81,7 +80,7 @@ if (isset($_SESSION['username'])) {
                 <!-- <label for="quantity">Quantity (between 1 and 5):</label> -->
                 <input class="form-control" type="number" id="quantity" name="quantity" min="1" max="5">
                 <br>
-                <a href="index.php">Back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <a href="index.php">Back</a><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <input type="submit" class="btn btn-primary" value="Confirm Order"/>
             </form> 
         </div>
@@ -91,9 +90,6 @@ if (isset($_SESSION['username'])) {
 
 <?php
     include 'includes/footer.php';
-}
-else {
-    echo "0 results";
 }
 $conn->close();
 
